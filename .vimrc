@@ -56,8 +56,6 @@ else
   let &t_SI = "\<Esc>]50;CursorShape=1\x7"
   let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
-"danh dau ca dong tai vi tri con tro
-":autocmd InsertEnter * set cul
 :autocmd InsertLeave * set nocul
 
 
@@ -137,9 +135,9 @@ let g:airline_symbols.branch = '⎇'
 
 
 
-"di chuyen giua cac buffers
-	map <C-L> :bnext<CR>
-	map <C-H> :bprev<CR>
+"move next/previous buffers
+	map <Leader>l :bnext<CR>
+	map <Leader>h :bprev<CR>
 
 
 
@@ -384,6 +382,9 @@ nnoremap <silent> <F7> :Rg<CR>
 autocmd FileType * EmmetInstall
 let g:user_emmet_install_global = 0
 let g:user_emmet_leader_key='<C-Z>'
+
+
+
 nnoremap <Leader>f :call CocAction('format') <CR>
 
 
@@ -399,7 +400,15 @@ vnoremap <S-Down> :m '>+1<CR>gv=gv
 
 
 map <S-m> 20zl " Scroll 20 characters to the right
-map <S-n> 20zh " Scroll 20 characters to the left
+map <S-z> 20zh " Scroll 20 characters to the left
+
+
+
+" Use ctrl-[hjkl] to select the active split!
+nmap <silent> <c-k> :wincmd k<CR>
+nmap <silent> <c-j> :wincmd j<CR>
+nmap <silent> <c-h> :wincmd h<CR>
+nmap <silent> <c-l> :wincmd l<CR>
 
 
 
