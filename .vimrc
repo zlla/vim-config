@@ -12,43 +12,43 @@
 
 
 call plug#begin()
-" {{ Giao dien }}
-	Plug 'joshdick/onedark.vim'
+" {{ Theme }}
+    Plug 'joshdick/onedark.vim'
     Plug 'Yggdroot/indentLine'
-    Plug 'sheerun/vim-polyglot' "ho tro highlight cho themes onedark
+    Plug 'sheerun/vim-polyglot'                     " Highlight for onedark theme
 
-" {{ Duyet file }}
-	Plug 'preservim/nerdtree'
-	Plug 'unkiwii/vim-nerdtree-sync' 	
-	Plug 'Xuyuanp/nerdtree-git-plugin' 				" Git status
-	Plug 'ryanoasis/vim-devicons' 					" Icon
+" {{ File }}
+    Plug 'preservim/nerdtree'
+    Plug 'unkiwii/vim-nerdtree-sync'    
+    Plug 'Xuyuanp/nerdtree-git-plugin'              " Git status
+    Plug 'ryanoasis/vim-devicons'                   " Icon
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
 
-" {{ Thanh trang thai }}
-	Plug 'vim-airline/vim-airline'
-	Plug 'vim-airline/vim-airline-themes'
-	
+" {{ Status bar }}
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+    
 " {{ Terminal }}
-	Plug 'voldikss/vim-floaterm'
+    Plug 'voldikss/vim-floaterm'
 
-" {{ Plugin khac }}
-	Plug 'neoclide/coc.nvim', {'branch': 'release'}
-	Plug 'jiangmiao/auto-pairs'
-	Plug 'tpope/vim-fugitive'
+" {{ Another Plugin }}
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'jiangmiao/auto-pairs'
+    Plug 'tpope/vim-fugitive'
     Plug 'rhysd/vim-healthcheck'
 
 " {{ Suggestion Plugin }}
-	Plug 'yuezk/vim-js' "for js
-    Plug 'jackguo380/vim-lsp-cxx-highlight' "for c++
-    Plug 'mattn/emmet-vim' " html,css
-    Plug 'davidhalter/jedi-vim' "for python
+    Plug 'jackguo380/vim-lsp-cxx-highlight'     "for c++
+    Plug 'davidhalter/jedi-vim'                 "for python
+    Plug 'yuezk/vim-js'                         "for js
+    Plug 'mattn/emmet-vim'                      "for html,css
     Plug 'yaegassy/coc-htmldjango', {'do': 'yarn install --frozen-lockfile'}
 call plug#end()
 
 
 
-"fix corsor
+"fix cursor
 if exists('$TMUX')
   let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
   let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
@@ -61,38 +61,38 @@ endif
 
 
 syntax enable
-set guifont=MesloLGS\ NF:h18 "neu dung macvim thi uncomment
+set guifont=MesloLGS\ NF:h18    "Uncomment if using macvim
 set t_Co=256
-set mouse=a 				" Enable mouse
-set tabstop=4 				" 
+set mouse=a                     " Enable mouse
+set tabstop=4                   " 
 set softtabstop=4 expandtab
-set shiftwidth=4 			" 
-set listchars=tab:\|\ 
+set shiftwidth=4
+set listchars=tab:\|\
 set list
-set foldmethod=indent 		" 
-set foldlevelstart=99 		"  
-set number 					" Show line number
+set foldmethod=indent
+set foldlevelstart=99
+set number                      " Show line number
 set relativenumber
-set ignorecase 				" Enable case-sensitive 
+set ignorecase                  " Enable case-sensitive 
 set expandtab
-set hlsearch "Enable highlight when search
+set hlsearch                    "Enable highlight when search
 set clipboard=unnamed
 set wildmenu
 set omnifunc=javascriptcomplete "CompleteJS
-set omnifunc=htmlcomplete "CompleteTags
-set omnifunc=csscomplete "CompleteCSS
-set foldmethod=manual "vim folding
+set omnifunc=csscomplete        "CompleteCSS
+set omnifunc=htmlcomplete       "CompleteTags
+set foldmethod=manual           "Vim folding
 set incsearch
 set nowrap
 
 
 
-"turn on/off highlight
+"Toggle highlight word when searching
 noremap <F4> :set hlsearch! hlsearch?<CR>
 
 
 
-"floaterm
+"Floaterm
 let g:floaterm_position = 'bottomright'
 let g:floaterm_title = 'VIET NAM VO DICH'
 let g:floaterm_keymap_toggle = '<F8>'
@@ -110,16 +110,16 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 
 
-"status bar
+"Status bar
 "let g:airline_theme='distinguished'
 let g:airline_theme='badwolf'
 let g:airline_powerline_fonts=1
-let g:airline#extensions#tabline#enabled = 1 				" Enable Tab bar
-"let g:airline#extensions#tabline#left_sep = ' ' 			" Enable Tab seperator
-let g:airline#extensions#tabline#left_alt_sep = '|' 		" Enable Tab seperator
+let g:airline#extensions#tabline#enabled = 1                " Enable Tab bar
+"let g:airline#extensions#tabline#left_sep = ' '            " Enable Tab seperator
+let g:airline#extensions#tabline#left_alt_sep = '|'         " Enable Tab seperator
 let g:airline#extensions#tabline#formatter = 'unique_tail'
-let g:airline#extensions#tabline#fnamemod = ':t' 			" Set Tab name as file name
-let g:airline#extensions#whitespace#enabled = 0  			" Remove warning whitespace"
+let g:airline#extensions#tabline#fnamemod = ':t'            " Set Tab name as file name
+let g:airline#extensions#whitespace#enabled = 0             " Remove warning whitespace"
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
@@ -135,13 +135,13 @@ let g:airline_symbols.branch = '⎇'
 
 
 
-"move next/previous buffers
-	map <Leader>l :bnext<CR>
-	map <Leader>h :bprev<CR>
+"Move next/previous buffers
+map <Leader>l :bnext<CR>
+map <Leader>h :bprev<CR>
 
 
 
-"nerdtree setting
+"Nerdtree setting
 nnoremap <silent> <F5> :NERDTreeToggle <CR>
 " Exit Vim if NERDTree is the only window left.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
@@ -163,7 +163,7 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
 
 
 
-"coc setting
+"Coc setting
 " Set internal encoding of vim, not needed on neovim, since coc.nvim using some
 " unicode characters in the file autoload/float.vim
 set encoding=utf-8
@@ -328,7 +328,7 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 
 
-"fix theme onedark
+"Fix theme onedark
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
 "(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
@@ -347,7 +347,7 @@ endi
 
 
 
-"identline
+"Identline
 "let g:indentLine_defaultGroup = 'SpecialKey'
 let g:indentLine_char = '|'
 
@@ -389,7 +389,7 @@ nnoremap <Leader>f :call CocAction('format') <CR>
 
 
 
-"move line
+"Move line
 nnoremap <S-Up> :m-2<CR>
 nnoremap <S-Down> :m+<CR>
 inoremap <S-Up> <Esc>:m-2<CR>
@@ -412,7 +412,7 @@ nmap <silent> <c-l> :wincmd l<CR>
 
 
 
-"theme onedark
+"Theme onedark
 syntax on
 colorscheme onedark
 
