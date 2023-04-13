@@ -136,8 +136,8 @@ let g:airline_symbols.branch = '⎇'
 
 
 "Move next/previous buffers
-map <Leader>l :bnext<CR>
-map <Leader>h :bprev<CR>
+nnoremap <S-m> :bnext<CR>
+nnoremap <S-z> :bprev<CR>
 
 
 
@@ -396,11 +396,6 @@ inoremap <S-Up> <Esc>:m-2<CR>
 inoremap <S-Down> <Esc>:m+<CR>
 vnoremap <S-Up> :m-2<CR>gv=gv
 vnoremap <S-Down> :m '>+1<CR>gv=gv
-
-
-
-map <S-m> 20zl " Scroll 20 characters to the right
-map <S-z> 20zh " Scroll 20 characters to the left
 
 
 
