@@ -39,29 +39,15 @@ call plug#begin()
     Plug 'rhysd/vim-healthcheck'
 
 " {{ Suggestion Plugin }}
-    Plug 'jackguo380/vim-lsp-cxx-highlight'     "for c++
-    Plug 'davidhalter/jedi-vim'                 "for python
-    Plug 'yuezk/vim-js'                         "for js
-    Plug 'mattn/emmet-vim'                      "for html,css
+    Plug 'jackguo380/vim-lsp-cxx-highlight'     " for c++
+    Plug 'davidhalter/jedi-vim'                 " for python
+    Plug 'yuezk/vim-js'                         " for js
+    Plug 'mattn/emmet-vim'                      " for html,css
     Plug 'yaegassy/coc-htmldjango', {'do': 'yarn install --frozen-lockfile'}
 call plug#end()
 
-
-
-"fix cursor
-if exists('$TMUX')
-  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-else
-  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-endif
-:autocmd InsertLeave * set nocul
-
-
-
 syntax enable
-set guifont=MesloLGS\ NF:h18    "Uncomment if using macvim
+set guifont=MesloLGS\ NF:h18    " Uncomment if using macvim
 set t_Co=256
 set mouse=a                     " Enable mouse
 set tabstop=4                   " 
@@ -75,21 +61,15 @@ set number                      " Show line number
 set relativenumber
 set ignorecase                  " Enable case-sensitive 
 set expandtab
-set hlsearch                    "Enable highlight when search
+set hlsearch                    " Enable highlight when search
 set clipboard=unnamed
 set wildmenu
-set omnifunc=javascriptcomplete "CompleteJS
-set omnifunc=csscomplete        "CompleteCSS
-set omnifunc=htmlcomplete       "CompleteTags
-set foldmethod=manual           "Vim folding
+set omnifunc=javascriptcomplete " CompleteJS
+set omnifunc=csscomplete        " CompleteCSS
+set omnifunc=htmlcomplete       " CompleteTags
+set foldmethod=manual           " Vim folding
 set incsearch
 set nowrap
-
-
-
-"Toggle highlight word when searching
-noremap <F4> :set hlsearch! hlsearch?<CR>
-
 
 
 "Floaterm
@@ -104,10 +84,8 @@ autocmd FileType * :hi FloatermBorder ctermbg=9 ctermfg=11
 autocmd FileType * :hi Floaterm guibg=black
 
 
-
 " Disable automatic comment in newline
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-
 
 
 "Status bar
@@ -123,21 +101,13 @@ let g:airline#extensions#whitespace#enabled = 0             " Remove warning whi
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
-let g:airline_left_sep = '»'
 let g:airline_left_sep = '▶'
-let g:airline_right_sep = '«'
 let g:airline_right_sep = '◀'
 let g:airline_symbols.colnr = ' :'
 let g:airline_symbols.crypt = '🔒'
 let g:airline_symbols.maxlinenr = ''
 let g:airline_symbols.linenr = ' ☰'
 let g:airline_symbols.branch = '⎇'
-
-
-
-"Move next/previous buffers
-nnoremap <S-m> :bnext<CR>
-nnoremap <S-z> :bprev<CR>
 
 
 
@@ -160,7 +130,6 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
                 \ 'Clean'     :'✔︎',
                 \ 'Unknown'   :'?',
                 \ }
-
 
 
 "Coc setting
@@ -327,7 +296,6 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 
-
 "Fix theme onedark
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
@@ -345,12 +313,20 @@ if (empty($TMUX))
   endif
 endi
 
+"fix cursor
+if exists('$TMUX')
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
+:autocmd InsertLeave * set nocul
 
 
 "Identline
 "let g:indentLine_defaultGroup = 'SpecialKey'
 let g:indentLine_char = '|'
-
 
 
 "FZF
@@ -377,6 +353,14 @@ map <silent> <F6> :Files<CR>
 nnoremap <silent> <F7> :Rg<CR>
 
 
+"Toggle highlight word when searching
+noremap <F4> :set hlsearch! hlsearch?<CR>
+
+
+"Move next/previous buffers
+nnoremap <S-m> :bnext<CR>
+nnoremap <S-z> :bprev<CR>
+
 
 "html,css
 autocmd FileType * EmmetInstall
@@ -384,9 +368,8 @@ let g:user_emmet_install_global = 0
 let g:user_emmet_leader_key='<C-Z>'
 
 
-
+"format code
 nnoremap <Leader>f :call CocAction('format') <CR>
-
 
 
 "Move line
@@ -398,7 +381,6 @@ vnoremap <S-Up> :m-2<CR>gv=gv
 vnoremap <S-Down> :m '>+1<CR>gv=gv
 
 
-
 " Use ctrl-[hjkl] to select the active split!
 nmap <silent> <c-k> :wincmd k<CR>
 nmap <silent> <c-j> :wincmd j<CR>
@@ -406,8 +388,6 @@ nmap <silent> <c-h> :wincmd h<CR>
 nmap <silent> <c-l> :wincmd l<CR>
 
 
-
 "Theme onedark
 syntax on
 colorscheme onedark
-
