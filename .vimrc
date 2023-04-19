@@ -20,6 +20,7 @@ call plug#begin()
 " {{ File }}
     Plug 'preservim/nerdtree'
     Plug 'unkiwii/vim-nerdtree-sync'    
+    Plug 'preservim/nerdtree'
     Plug 'Xuyuanp/nerdtree-git-plugin'              " Git status
     Plug 'ryanoasis/vim-devicons'                   " Icon
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -47,7 +48,7 @@ call plug#begin()
 call plug#end()
 
 syntax enable
-set guifont=MesloLGS\ NF:h18    " Uncomment if using macvim
+set guifont=DejaVu\ Sans:s12.
 set t_Co=256
 set mouse=a                     " Enable mouse
 set tabstop=4                   " 
@@ -74,7 +75,7 @@ set nowrap
 
 "Floaterm
 let g:floaterm_position = 'bottomright'
-let g:floaterm_title = 'VIET NAM VO DICH'
+let g:floaterm_title = 'Viet Nam Vo Dich'
 let g:floaterm_keymap_toggle = '<F8>'
 let g:floaterm_keymap_kill   = '<F9>'
 let g:floaterm_width = 0.45
@@ -93,7 +94,7 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 let g:airline_theme='badwolf'
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled = 1                " Enable Tab bar
-"let g:airline#extensions#tabline#left_sep = ' '            " Enable Tab seperator
+let g:airline#extensions#tabline#left_sep = ' '            " Enable Tab seperator
 let g:airline#extensions#tabline#left_alt_sep = '|'         " Enable Tab seperator
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline#extensions#tabline#fnamemod = ':t'            " Set Tab name as file name
@@ -101,35 +102,20 @@ let g:airline#extensions#whitespace#enabled = 0             " Remove warning whi
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '◀'
-let g:airline_symbols.colnr = ' :'
-let g:airline_symbols.crypt = '🔒'
-let g:airline_symbols.maxlinenr = ''
-let g:airline_symbols.linenr = ' ☰'
-let g:airline_symbols.branch = '⎇'
 
+" powerline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.linenr = '  ☰ '
+let g:airline_symbols.maxlinenr = ''
+let g:airline_symbols.dirty = '⚡'
+let g:airline_symbols.colnr = '  ㏇:'
 
 
 "Nerdtree setting
 nnoremap <silent> <F5> :NERDTreeToggle <CR>
-" Exit Vim if NERDTree is the only window left.
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
-" Change arrow to expand/collapse tree
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
-let g:NERDTreeGitStatusIndicatorMapCustom = {
-                \ 'Modified'  :'✹',
-                \ 'Staged'    :'✚',
-                \ 'Untracked' :'✭',
-                \ 'Renamed'   :'➜',
-                \ 'Unmerged'  :'═',
-                \ 'Deleted'   :'✖',
-                \ 'Dirty'     :'✗',
-                \ 'Ignored'   :'☒',
-                \ 'Clean'     :'✔︎',
-                \ 'Unknown'   :'?',
-                \ }
 
 
 "Coc setting
