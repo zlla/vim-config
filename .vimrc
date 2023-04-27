@@ -50,7 +50,7 @@ call plug#begin()
 call plug#end()
 
 syntax enable
-set guifont=DejaVu\ Sans:s12.
+set guifont=Hack\ Nerd\ Font:h20
 set t_Co=256
 set mouse=a                     " Enable mouse
 set tabstop=4                   " 
@@ -82,9 +82,9 @@ let g:floaterm_keymap_toggle = '<F8>'
 let g:floaterm_keymap_kill   = '<F9>'
 let g:floaterm_width = 0.45
 let g:floaterm_height = 0.5
-autocmd FileType * :hi FloatermBorder guibg=red guifg=yellow
-autocmd FileType * :hi FloatermBorder ctermbg=9 ctermfg=11
-autocmd FileType * :hi Floaterm guibg=black
+autocmd FileType * :hi FloatermBorder guifg=Chartreuse2
+"autocmd FileType * :hi FloatermBorder ctermbg=61 ctermfg=61
+"autocmd FileType * :hi Floaterm guibg=SlateBlue3
 
 
 " Disable automatic comment in newline
