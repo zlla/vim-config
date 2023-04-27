@@ -16,6 +16,7 @@ call plug#begin()
     Plug 'joshdick/onedark.vim'
     Plug 'Yggdroot/indentLine'
     Plug 'sheerun/vim-polyglot'                     " Highlight for onedark theme
+    Plug 'glepnir/dashboard-nvim'
 
 " {{ File }}
     Plug 'preservim/nerdtree'
@@ -44,6 +45,7 @@ call plug#begin()
     Plug 'davidhalter/jedi-vim'                 " for python
     Plug 'yuezk/vim-js'                         " for js
     Plug 'mattn/emmet-vim'                      " for html,css
+    Plug 'OmniSharp/omnisharp-vim'              " for c#
     Plug 'yaegassy/coc-htmldjango', {'do': 'yarn install --frozen-lockfile'}
 call plug#end()
 
@@ -111,7 +113,7 @@ let g:airline_right_alt_sep = ''
 let g:airline_symbols.linenr = '  ☰ '
 let g:airline_symbols.maxlinenr = ''
 let g:airline_symbols.dirty = '⚡'
-let g:airline_symbols.colnr = '  ㏇:'
+let g:airline_symbols.colnr = '  ㏇'
 
 
 "Nerdtree setting
