@@ -50,7 +50,7 @@ call plug#begin()
 call plug#end()
 
 syntax enable
-set guifont=Hack\ Nerd\ Font:h20
+set guifont=Hack\ Nerd\ Font\ Mono:h20
 set t_Co=256
 set mouse=a                     " Enable mouse
 set tabstop=4                   " 
