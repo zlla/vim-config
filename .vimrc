@@ -92,8 +92,7 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 
 "Status bar
-"let g:airline_theme='distinguished'
-let g:airline_theme='badwolf'
+let g:airline_theme='bubblegum'
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled = 1                " Enable Tab bar
 let g:airline#extensions#tabline#left_sep = ' '            " Enable Tab seperator
@@ -320,21 +319,15 @@ let g:indentLine_char = '|'
 "FZF
 let g:fzf_layout = { 'window': { 'width': 0.65, 'height': 0.6 } }
 let g:fzf_preview_window = ['right:50%', 'ctrl-/']
-let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
+function! s:fzf_statusline()
+  " Override statusline as you like
+  highlight fzf1 ctermfg=161 ctermbg=251
+  highlight fzf2 ctermfg=23 ctermbg=251
+  highlight fzf3 ctermfg=237 ctermbg=251
+  setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
+endfunction
+
+autocmd! User FzfStatusLine call <SID>fzf_statusline()
 
 " :Files
 map <silent> <F6> :Files<CR>
