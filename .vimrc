@@ -46,6 +46,8 @@ call plug#begin()
     Plug 'yuezk/vim-js'                         " for js
     Plug 'mattn/emmet-vim'                      " for html,css
     Plug 'OmniSharp/omnisharp-vim'              " for c#
+    Plug 'OmniSharp/omnisharp-roslyn'
+    Plug 'dense-analysis/ale'
     Plug 'yaegassy/coc-htmldjango', {'do': 'yarn install --frozen-lockfile'}
 call plug#end()
 
@@ -373,14 +375,4 @@ nmap <silent> <c-l> :wincmd l<CR>
 syntax on
 colorscheme onedark
 
-
-execute pathogen#infect()
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:OmniSharp_server_stdio = 1
