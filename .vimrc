@@ -16,7 +16,6 @@ call plug#begin()
     Plug 'joshdick/onedark.vim'
     Plug 'Yggdroot/indentLine'
     Plug 'sheerun/vim-polyglot'                     " Highlight for onedark theme
-    Plug 'glepnir/dashboard-nvim'
 
 " {{ File }}
     Plug 'preservim/nerdtree'
