@@ -16,13 +16,12 @@ call plug#begin()
     Plug 'joshdick/onedark.vim'
     Plug 'Yggdroot/indentLine'
     Plug 'sheerun/vim-polyglot'                     " Highlight for onedark theme
+    Plug 'ryanoasis/vim-devicons'                   " Icon
 
 " {{ File }}
     Plug 'preservim/nerdtree'
     Plug 'unkiwii/vim-nerdtree-sync'    
-    Plug 'preservim/nerdtree'
     Plug 'Xuyuanp/nerdtree-git-plugin'              " Git status
-    Plug 'ryanoasis/vim-devicons'                   " Icon
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
 
@@ -46,10 +45,15 @@ call plug#begin()
     Plug 'mattn/emmet-vim'                      " for html,css
     Plug 'OmniSharp/omnisharp-vim'              " for c#
     Plug 'OmniSharp/omnisharp-roslyn'
-    Plug 'dense-analysis/ale'
-    Plug 'yaegassy/coc-htmldjango', {'do': 'yarn install --frozen-lockfile'}
-call plug#end()
+    Plug 'dense-analysis/ale' " syntax checking and semantic errors
+    Plug 'yaegassy/coc-htmldjango', {'do': 'yarn install --frozen-lockfile'} " formater
 
+
+call plug#end()
+" ---------------------------
+
+
+" {{ Basic config }}
 syntax enable
 set guifont=Hack\ Nerd\ Font\ Mono:h20
 set t_Co=256
@@ -74,9 +78,10 @@ set omnifunc=htmlcomplete       " CompleteTags
 set foldmethod=manual           " Vim folding
 set incsearch
 set nowrap
+" ---------------------------
 
 
-"Floaterm
+" {{ Floaterm config }}
 let g:floaterm_position = 'bottomright'
 let g:floaterm_title = 'Viet Nam Vo Dich'
 let g:floaterm_keymap_toggle = '<F8>'
@@ -87,12 +92,10 @@ autocmd FileType * :hi FloatermBorder guifg=Chartreuse2
 "autocmd FileType * :hi FloatermBorder ctermbg=61 ctermfg=61
 "autocmd FileType * :hi Floaterm guibg=SlateBlue3
 
-
 " Disable automatic comment in newline
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-
-"Status bar
+" {{ Status bar config }}
 let g:airline_theme='bubblegum'
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled = 1                " Enable Tab bar
@@ -105,7 +108,7 @@ if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 
-" powerline symbols
+" {{ Powerline symbols config }}
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
@@ -115,12 +118,10 @@ let g:airline_symbols.maxlinenr = ''
 let g:airline_symbols.dirty = '⚡'
 let g:airline_symbols.colnr = '  ㏇'
 
-
-"Nerdtree setting
+" {{ Nerdtree config }}
 nnoremap <silent> <F5> :NERDTreeToggle <CR>
 
-
-"Coc setting
+" {{ Cocnvim config }}
 " Set internal encoding of vim, not needed on neovim, since coc.nvim using some
 " unicode characters in the file autoload/float.vim
 set encoding=utf-8
@@ -283,25 +284,7 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
-
-"Fix theme onedark
-"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
-"If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
-"(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
-if (empty($TMUX))
-  if (has("nvim"))
-    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
-    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  endif
-  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
-  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
-  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
-  if (has("termguicolors"))
-    set termguicolors
-  endif
-endi
-
-"fix cursor
+" {{ Cursor config }}
 if exists('$TMUX')
   let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
   let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
@@ -311,13 +294,11 @@ else
 endif
 :autocmd InsertLeave * set nocul
 
-
-"Identline
+" Identline
 "let g:indentLine_defaultGroup = 'SpecialKey'
 let g:indentLine_char = '|'
 
-
-"FZF
+" {{ FZF config }}
 let g:fzf_layout = { 'window': { 'width': 0.65, 'height': 0.6 } }
 let g:fzf_preview_window = ['right:50%', 'ctrl-/']
 function! s:fzf_statusline()
@@ -334,27 +315,17 @@ autocmd! User FzfStatusLine call <SID>fzf_statusline()
 map <silent> <F6> :Files<CR>
 nnoremap <silent> <F7> :Rg<CR>
 
-
-"Toggle highlight word when searching
+" Toggle highlight word when searching
 noremap <F4> :set hlsearch! hlsearch?<CR>
 
-
-"Move next/previous buffers
+" Move next/previous buffers
 nnoremap <S-m> :bnext<CR>
 nnoremap <S-z> :bprev<CR>
 
-
-"html,css
-autocmd FileType * EmmetInstall
-let g:user_emmet_install_global = 0
-let g:user_emmet_leader_key='<C-Z>'
-
-
-"format code
+" Format code
 nnoremap <Leader>f :call CocAction('format') <CR>
 
-
-"Move line
+" Move line
 nnoremap <S-Up> :m-2<CR>
 nnoremap <S-Down> :m+<CR>
 inoremap <S-Up> <Esc>:m-2<CR>
@@ -362,16 +333,35 @@ inoremap <S-Down> <Esc>:m+<CR>
 vnoremap <S-Up> :m-2<CR>gv=gv
 vnoremap <S-Down> :m '>+1<CR>gv=gv
 
-
 " Use ctrl-[hjkl] to select the active split!
 nmap <silent> <c-k> :wincmd k<CR>
 nmap <silent> <c-j> :wincmd j<CR>
 nmap <silent> <c-h> :wincmd h<CR>
 nmap <silent> <c-l> :wincmd l<CR>
 
-
-"Theme onedark
+" {{ Onedark theme config }}
+"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
+"If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
+"(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
+if (empty($TMUX))
+  if (has("nvim"))
+    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  endif
+  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+  if (has("termguicolors"))
+    set termguicolors
+  endif
+endi
 syntax on
 colorscheme onedark
 
+" {{ html,css suggestion config }}
+autocmd FileType * EmmetInstall
+let g:user_emmet_install_global = 0
+let g:user_emmet_leader_key='<C-Z>'
+
+" {{ C# suggestion config }}
 let g:OmniSharp_server_stdio = 1
