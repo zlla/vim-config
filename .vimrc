@@ -38,6 +38,9 @@ call plug#begin()
     Plug 'tpope/vim-fugitive'
     Plug 'rhysd/vim-healthcheck'
 
+" {{ Debugger }}
+    Plug 'puremourning/vimspector'
+
 " {{ Suggestion Plugin }}
     Plug 'jackguo380/vim-lsp-cxx-highlight'     " for c++
     Plug 'davidhalter/jedi-vim'                 " for python
@@ -45,6 +48,7 @@ call plug#begin()
     Plug 'mattn/emmet-vim'                      " for html,css
     Plug 'OmniSharp/omnisharp-vim'              " for c#
     Plug 'OmniSharp/omnisharp-roslyn'
+    Plug 'OrangeT/vim-csharp'
     Plug 'dense-analysis/ale' " syntax checking and semantic errors
     Plug 'yaegassy/coc-htmldjango', {'do': 'yarn install --frozen-lockfile'} " formater
 
@@ -78,6 +82,8 @@ set omnifunc=htmlcomplete       " CompleteTags
 set foldmethod=manual           " Vim folding
 set incsearch
 set nowrap
+set splitright
+set splitbelow
 " ---------------------------
 
 
@@ -312,15 +318,15 @@ endfunction
 autocmd! User FzfStatusLine call <SID>fzf_statusline()
 
 " :Files
-map <silent> <F6> :Files<CR>
+nnoremap <silent> <F6> :Files<CR>
 nnoremap <silent> <F7> :Rg<CR>
 
 " Toggle highlight word when searching
 noremap <F4> :set hlsearch! hlsearch?<CR>
 
 " Move next/previous buffers
-nnoremap <S-m> :bnext<CR>
-nnoremap <S-z> :bprev<CR>
+nnoremap <S-M> :bnext<CR>
+nnoremap <S-Z> :bprev<CR>
 
 " Format code
 nnoremap <Leader>f :call CocAction('format') <CR>
@@ -334,10 +340,10 @@ vnoremap <S-Up> :m-2<CR>gv=gv
 vnoremap <S-Down> :m '>+1<CR>gv=gv
 
 " Use ctrl-[hjkl] to select the active split!
-nmap <silent> <c-k> :wincmd k<CR>
-nmap <silent> <c-j> :wincmd j<CR>
-nmap <silent> <c-h> :wincmd h<CR>
-nmap <silent> <c-l> :wincmd l<CR>
+nmap <silent> <C-K> :wincmd k<CR>
+nmap <silent> <C-J> :wincmd j<CR>
+nmap <silent> <C-H> :wincmd h<CR>
+nmap <silent> <C-L> :wincmd l<CR>
 
 " {{ Onedark theme config }}
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
@@ -365,3 +371,16 @@ let g:user_emmet_leader_key='<C-Z>'
 
 " {{ C# suggestion config }}
 let g:OmniSharp_server_stdio = 1
+
+" {{ Vimspector settings }}
+nnoremap <leader>da :call vimspector#Launch()<CR>
+nnoremap <leader>dx :call vimspector#Reset()<CR>
+nnoremap <leader>dX :call vimspector#ClearBreakpoints()<CR>
+nnoremap <leader>dk :call vimspector#StepOut()<CR>
+nnoremap <leader>dl :call vimspector#StepInto()<CR>
+nnoremap <leader>dj :call vimspector#StepOver()<CR>
+nnoremap <leader>d_ :call vimspector#Restart()<CR>
+nnoremap <leader>dn :call vimspector#Continue()<CR>
+nnoremap <leader>drc :call vimspector#RunToCursor()<CR>
+nnoremap <leader>dh :call vimspector#ToggleBreakpoint()<CR>
+nnoremap <leader>de :call vimspector#ToggleConditionalBreakpoint()<CR>
